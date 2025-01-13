@@ -1,0 +1,28 @@
+Software Engineer to think about the CPU.
+To store a 1 bit, we usully do with a Capacitor, if charge exists then it is 1 or if no charge then it is 0. 
+The other way to thing is of having a invertor with with a feedback mechanism. 
+     1 |-----|>o------| 0
+-------|              |-------  So whatever you put here it is trapped if power is available.  
+     1 |-----o<|------| 0
+Let say this is 1 bit. Lets take 8 bit it means eight blocks, same goes for 32 bit or 64 bit.
+So the entire will be called as Register(8bit,16bit,32bit,64bit).
+Unit of Storage is a bit. Group of bit(8/16/32) will be called as 8Bit Registeer or 32 bit register. 
+Programmer's model is based on the register. 
+Let say you got 8 bit of register in form of an array that is called as the Memory. 
+See CPU as bunch of registers:- Add more points here. 
+Registers -> GPR(General Purpose Register), Status Register, Config Register(Control the CPU what CPU can do and cant do).
+
+If CPU is having 128 interrupts, then it means there would be 128 lines dedicated to input source. 
+Designing cost CPU will be increse if number of input pins are increased so need to reduce it. 
+So the ARM developer does is what added another IC and this is connected to CPU. 
+That IC will be responsible for the all inputs. 
+This is called as interrupt controller. This is NVIC which M+ developer did. 
+So basically the NVIC+Cortex M Processor together is called as ARM CPU.
+
+In NVIC we might need only 2 or 3 input and rest we need to ignore and we need to pass the information regarding this so, to do this we have Configuration Registers. 
+Here we need to config those registers to make it work. 
+
+
+
+
+
