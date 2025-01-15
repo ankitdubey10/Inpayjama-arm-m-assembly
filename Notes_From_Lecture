@@ -47,10 +47,11 @@ M4->DSP M3->DOES NOT HAVE DSP
 Programmer's Model For the M-Class CPUs.
 
 M Class can be said like 16 GPR Rgisters(R0 TO R15), 5 Special Registers. 
-R13     STACK POINTER
+R13     STACK POINTER    -->  It stores the actual point where the stack is pointing. Function Calls and varibales.
+        There are two types of stacks MSP and PSP. 
 
 R14     LINK REGISTER    -->  It stores the address where the CPU must return after the execution of the Program Counter's. 
-        It generally happens when the execution is done by the Function Call is there in between a call. 
+        It generally happens when the execution is done by the Function Call is there in between a call. Where to go after completion of call.
 
 R15     PROGRAM COUNTER  -->  Stores the Next Cycle Instruction's Address. 
         Means if its is 0x10000000 then,in next cycle it will fetch the Instruction from the memory location of 0x10000000. 
