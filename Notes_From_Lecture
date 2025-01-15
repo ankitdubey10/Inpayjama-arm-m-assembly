@@ -22,7 +22,39 @@ So basically the NVIC+Cortex M Processor together is called as ARM CPU.
 In NVIC we might need only 2 or 3 input and rest we need to ignore and we need to pass the information regarding this so, to do this we have Configuration Registers. 
 Here we need to config those registers to make it work. 
 
+*****************************************************************************************************************************************
+*****************************************************************************************************************************************
 
+Microarchitecutee is more than specification details. 
+In ARM provide 3 types of ARM CPU whiich are listed below:
+1. A (Application to run the OS - Linux, MacOS, Windows)
+2. M (This is used for the Microcontroller)
+3. R (Real Time Application like Passing the Packet or Minor Pointing Applicaiton like Determinism (Time Bound Tasks ))
 
+Performance Wise  A >> R >> M
 
+ARM CORTEX M is further divided into V6,V7,V8.
+V6->[] M0,M+,M1 are microarchitecture.
+V7->[] M3,M4,M7
+V8->[] M23,M33,M55
 
+Instructions of M3 will be supported in the M23, means V6 will support V7 and V7 will support V8. 
+M4->DSP M3->DOES NOT HAVE DSP
+
+*****************************************************************************************************************************************
+*****************************************************************************************************************************************
+
+Programmer's Model For the M-Class CPUs.
+
+M Class can be said like 16 GPR Rgisters(R0 TO R15), 5 Special Registers. 
+R13     STACK POINTER
+
+R14     LINK REGISTER    -->  It stores the address where the CPU must return after the execution of the Program Counter's. 
+        It generally happens when the execution is done by the Function Call is there in between a call. 
+
+R15     PROGRAM COUNTER  -->  Stores the Next Cycle Instruction's Address. 
+        Means if its is 0x10000000 then,in next cycle it will fetch the Instruction from the memory location of 0x10000000. 
+
+XPSR                                   PROGRAM STATUS REGISTER
+STATUS CONFIGURATION                    
+CONTROL                                CONTROL REGISTER
