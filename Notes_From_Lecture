@@ -22,8 +22,8 @@ So basically the NVIC+Cortex M Processor together is called as ARM CPU.
 In NVIC we might need only 2 or 3 input and rest we need to ignore and we need to pass the information regarding this so, to do this we have Configuration Registers. 
 Here we need to config those registers to make it work. 
 
-*****************************************************************************************************************************************
-*****************************************************************************************************************************************
+******************************************************************************************************************************************************************
+******************************************************************************************************************************************************************
 
 Microarchitecutee is more than specification details. 
 In ARM provide 3 types of ARM CPU whiich are listed below:
@@ -48,7 +48,7 @@ Programmer's Model For the M-Class CPUs.
 
 M Class can be said like 16 GPR Rgisters(R0 TO R15), 5 Special Registers. 
 R13     STACK POINTER    -->  It stores the actual point where the stack is pointing. Function Calls and varibales.
-        There are two types of stacks MSP and PSP. 
+        There are two types of stacks MSP and PSP. Stack increments or decrements as the funciton call is done. 
 
 R14     LINK REGISTER    -->  It stores the address where the CPU must return after the execution of the Program Counter's. 
         It generally happens when the execution is done by the Function Call is there in between a call. Where to go after completion of call.
@@ -57,5 +57,35 @@ R15     PROGRAM COUNTER  -->  Stores the Next Cycle Instruction's Address.
         Means if its is 0x10000000 then,in next cycle it will fetch the Instruction from the memory location of 0x10000000. 
 
 XPSR                                   PROGRAM STATUS REGISTER
+XPSR can split into three. PSR, EPBR, IPSR. 
+
+
 STATUS CONFIGURATION                    
 CONTROL                                CONTROL REGISTER
+
+******************************************************************************************************************************************************************
+******************************************************************************************************************************************************************
+
+Modes and Priviledge of the CPU
+ARM Cortex M CPU can operate in two modes, as listed below: 
+1. Thread Mode 
+2. Handler Mode
+Thread Mode can be in the Privileged Mode or Unprivileged Mode. 
+The Control Register's 0th bit is the decider for the Priviledged or Unpriviledged Mode. This bit is responsible. 
+Thread Mode can use PSP, MSP(R13). 
+
+Handler Mode can only be in the Priviledged Mode. 
+Handler mode will always use MSP(R13). 
+
+M Class CPU has exceptions. Difference between Interrupt and Exception is nothing but exception can be called as internal(usually
+malfunction) while we can call interrupt as the outside stuffs. Exception or Interrupt are usully considered as one in layman language. 
+
+Whenever system starts it starts in Thread Mode (in PM) when exception/interrupt happens it goes to Handler Mode. 
+Then on the condition it might go to the UPM(in Thread Mode) or the Thread Mode(in PM). 
+From Thread Mode(PM) user can use the CONTROL mode to shuffle the bit and go to the Unpriviledge mode from the Priviledged Mode. 
+
+Why have two MOdes of Operation? 
+When you are dealing with interrupt/exception, you are delaing with the devices, then you might need the complete axis to that device.
+Hence the handler (in PM) comes into the picture. The OS code needs to run somewhere. So (FreeRTOS) other OS will run in the Thread Mode
+(PM) while the interrupts of the OS will run in the Handler/Priviledged Mode. Appicaiton(written by you) should run in the Thread Mode(UPM). 
+
