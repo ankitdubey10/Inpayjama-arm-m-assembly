@@ -89,3 +89,22 @@ When you are dealing with interrupt/exception, you are delaing with the devices,
 Hence the handler (in PM) comes into the picture. The OS code needs to run somewhere. So (FreeRTOS) other OS will run in the Thread Mode
 (PM) while the interrupts of the OS will run in the Handler/Priviledged Mode. Appicaiton(written by you) should run in the Thread Mode(UPM). 
 
+******************************************************************************************************************************************************************
+******************************************************************************************************************************************************************
+
+Boot Up Process
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
