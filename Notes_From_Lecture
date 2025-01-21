@@ -93,18 +93,47 @@ Hence the handler (in PM) comes into the picture. The OS code needs to run somew
 ******************************************************************************************************************************************************************
 
 Boot Up Process
+Exception/Interrupt Handling -> Interrupt comes at the NVIC and then it goes to the CPU (M-Class). 
+Lines on the NVIC is responsible for interrupts(usually considered as external). 
+Whenever the CPU gets an Interrupt from the NVIC then it goes there and work on it and return back. 
 
+It actually saves the things which it was doing early. 
+The state information is saved in the registers of the CPU. 
+This is saved further in the memory. 
 
+Then it will take the interrupt and moved registers with new and completely handles the interrupt and finishes it.
+Takes PC to interrupt address funciton. 
+Once done then now upload the registers value to cpu again. 
 
+In M class it saves some registers on the memory(stack memory or stack pointer). It saves around 8 registers.
+Vector table consist of the addresses and for each interrupt we are having address which means if x interrupt 
+happes then it goes to 0xndhfks address loaction. So when x interrupt occurs then CPU comes and 
+then it CPU took the registes value and saved it on stack and then it loads PC to the 0xndhfks address for 
+handling the interrupt once it gets return statement then CPU again goes to the Stack to reload the original
+registers value and continue with execution. 
 
+Reset is one of the execution. Reset is usuall first execution. 
+Whenever the CPU resets SP is loaded with 0x0 and PC with the 0x4. 
 
+SP is usually MSP to be in the priviledged mode. 
 
+Two ways to handle the exception/interrupt 1)Trap 2) Vectored.
+Vectored has different addresses for each interrupt.(M-Class has it)
+In Trap it has single addres and then it goes there and work on it. 
 
-
-
-
-
-
-
+******************************************************************************************************************************************************************
+******************************************************************************************************************************************************************
+Booting Process :- 
+0X0 -> SP ->MSP
+0X4 -> PC
+This is what it needs to be proved.
+Make File is used to automate the process of the type command on the cli. 
+linker script guides on how to place stuffs on the memory.
+3 files -> assembly, makefile, linker script. 
+assembly will be converted to the object and then we will map the object file with the linker and 
+then it will generate the .elf file. This elf will be having the instructions. 
+This elf will be loaded into qemu (stimulate like cortex m3).
+Qemu will decode those instructions and work like the cortex m3. And then we will connect the gdb to this and 
+do debugging. Gdb will show the PC and SP value. 
 
 
