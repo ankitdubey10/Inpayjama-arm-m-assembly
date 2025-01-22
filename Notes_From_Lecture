@@ -136,4 +136,14 @@ This elf will be loaded into qemu (stimulate like cortex m3).
 Qemu will decode those instructions and work like the cortex m3. And then we will connect the gdb to this and 
 do debugging. Gdb will show the PC and SP value. 
 
+******************************************************************************************************************************************************************
+******************************************************************************************************************************************************************
+Instruction Encoderin and Binary Dump
+Ref ARM Architecture Reference Manual Thumb-2 Supplement
+Two Instruction -> 16 bit Thumb and 32 bit ARM
+Thumb -> Less Memory, Need Good Encodeing Capability, Less Number of Instruction/Operation.
+ARM -> Thumb2 Instruction which allows both 16 bit and 32 bit encoding. 
+
+
+
 
